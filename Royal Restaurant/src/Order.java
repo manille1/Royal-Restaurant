@@ -1,4 +1,3 @@
-
 public class Order {
     private int numOrder;
     private String dishes;
