@@ -66,8 +66,9 @@ public class Employee {
         this.salary = salary;
     }
 
+    @Override
     public String toString() {
-        String answer = "Employé : " + firstName + lastName 
+        String answer = "Employé #" + id + ": " + "Nom : " + lastName + "Prénom : " + firstName 
                         + ", Poste : " + role 
                         + ", Date d'embauche : " + dateOfHire 
                         + ", Salaire : " + salary;

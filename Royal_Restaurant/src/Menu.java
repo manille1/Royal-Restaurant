@@ -1,19 +1,19 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Menu {
     private int id;
     private String name;
     private LocalDate dateCreated;
     private String Type;
-    private String dishes;
+    private ArrayList<Dish> dishes;
     
-    public Menu (int id, String name, LocalDate dateCreated, String Type, String dishes) {
-
+    public Menu (int id, String name, LocalDate dateCreated, String Type) {
         this.id = id ;
         this.name = name ;
         this.dateCreated = dateCreated ;
         this.Type = Type ;
-        this.dishes = dishes ;
+        this.dishes = new ArrayList<>();
     }
 
     public int getId() {
@@ -49,19 +49,42 @@ public class Menu {
         this.Type = Type;
     }
 
-    public String getDishes() {
+    public ArrayList<Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(String Dishes) {
-        this.dishes = Dishes;
+    public void addDish (Dish dish) {
+        dishes.add(dish);
     }
 
+    public void deleteDish (Dish dish) {
+        dishes.remove(dish);
+    }
+
+    public Dish getDishByName (String search) {
+        String wordSearch = ".*" + search + ".*";
+
+        for (Dish dish : dishes) {
+            String dishName = dish.getName();
+            if (dishName.matches(wordSearch)){
+                return dish;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     public String toString() {
         String answer = "Menu : " + name
                         + ", Date de création : " + dateCreated
                         + ", Type de menu : " + Type
-                        + ", Plats du menu : " + dishes;
+                        + ", Plats du menu : \n" ;
+        
+        for (Dish dish : dishes) {
+            answer += dish;
+        }
+
         return answer;
     }
 }

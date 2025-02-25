@@ -1,13 +1,14 @@
+import java.util.ArrayList;
+
 public class Order {
     private int numOrder;
-    private String dishes;
+    private ArrayList<Dish> dishes;
     private float Total;
     
-    public Order (int numOrder, String dishes, float Total) {
-
+    public Order (int numOrder) {
         this.numOrder = numOrder ;
-        this.dishes = dishes ;
-        this.Total = Total ;
+        this.dishes = new ArrayList<>();
+
     }
 
     public int getNumOrder() {
@@ -34,10 +35,16 @@ public class Order {
         this.Total = Total;
     }
 
+    @Override
     public String toString() {
-        String answer = "Menu : " + numOrder
-                        + ", Date de création : " + dishes
-                        + ", Type de menu : " + Total ;
+        String answer = "Commande #" + numOrder + ": ";
+                        
+        for (Dish dish : dishes) {
+            String listFormat = "   - " + dish.getName();
+            answer += listFormat;
+        }
+
+        answer + ", Type de menu : " + Total ;
         return answer;
     }
 }
